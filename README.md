@@ -16,7 +16,7 @@ Geht nur mit installiertem ChromeBrowser und in Niedersachsen...
     ```bash
     py get-pip.py
     ```
-- Geh' in den Ordner und öffne ihn in der CMD oder im Terminal. _( rechtklick im Ordner - 'in CMD/Terminal öffnen' )_
+- Geh' in den Ordner und öffne ihn in der CMD oder im Terminal. _( shift+rechtklick auf den ibot-Ordner - 'in CMD/Terminal/PowerShell öffnen' )_
 - Installier' die Requirements:
     ```bash
     pip install -r requirements.txt
