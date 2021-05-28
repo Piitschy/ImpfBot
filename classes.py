@@ -8,45 +8,55 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from multiprocessing import Manager, Process
+import utils
 
 
 class Storage:
-  path='./storage.json'
   def __init__(self):
-    with open(self.path,'w') as storage:
-      storage.write('')
+    try:
+      self.state= self.read()
+    except:
+      with open(utils.path,'w') as storage:
+        storage.write('{}')
+  
+  def __call__(self, key:str=None) -> dict:
+    if key:
+      return self.load(key)
+    return self.refresh
 
-  def __call__(self) -> dict:
-    with open(self.path) as storage:
-      return dict(json.loads(storage.read()))
+  def refresh(self):
+    self.state = self.read()
+    geb = self.state['geb']
+    if 'geb' in self.state:
+      geb = self.state['geb']
+      if '-' in geb:
+        self.state['geb'] = geb[-2:]+'.'+geb[5:7]+'.'+geb[:4]
+    return self.state
 
   def read(self):
-    with open(self.path) as storage:
+    with open(utils.path) as storage:
       return dict(json.loads(storage.read()))
 
-  def load(self, key):
-    s=self.read()
-    if key in s:
-      return s[key]
+  def load(self, key:str):
+    if key in self.state:
+      if key == 'geb':
+        geb=self.state['geb']
+        return str(geb[-2:]+'.'+geb[5:7]+'.'+geb[:4])
+      return self.state[key]
     return None
 
-  def save(self,data:dict):
+  def save(self,key:str,value):
     s=self.read()
+    data={key:value}
     s.update(data)
-    with open(self.path,'w') as storage:
+    with open(utils.path,'w') as storage:
       storage.write(json.dumps(s))
+    self.refresh()
     return s
 
-
-
 class ImpfBot:
-  driver_path= {
-    'Linux': './chromedriver_linux',
-    'Darwin': './chromedriver_linux',
-    'Windows': './chromedriver.exe',
-  }
-  def __init__(self,os) -> None:
-    self.driver = webdriver.Chrome(self.driver_path[os])
+  def __init__(self,system) -> None:
+    self.driver = webdriver.Chrome(utils.driver_path[system])
     self.vars = {}
   
   def teardown(self):
@@ -65,7 +75,6 @@ class ImpfBot:
   def anmeldung(self,geb:str,plz:str,t:int=0.3):
     s = lambda: sleep(t)
     self.driver.get("https://www.impfportal-niedersachsen.de/portal/")
-    input('Schau mal, ob da ein recaptcha ist.\nEnter, wenns losgehen kann...')
     self.driver.find_element(By.CSS_SELECTOR, ".mat-checkbox-inner-container-no-side-margin").click()
     s()
     element = self.driver.find_element(By.XPATH, "//button[contains(.,\'Weiter\')]")
