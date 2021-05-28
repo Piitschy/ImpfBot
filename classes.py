@@ -55,8 +55,9 @@ class Storage:
     return s
 
 class ImpfBot:
-  def __init__(self,system) -> None:
+  def __init__(self,system, url) -> None:
     self.driver = webdriver.Chrome(utils.driver_path[system])
+    self.url = url
     self.vars = {}
   
   def teardown(self):
@@ -74,7 +75,7 @@ class ImpfBot:
 
   def anmeldung(self,geb:str,plz:str,t:int=0.3):
     s = lambda: sleep(t)
-    self.driver.get("https://www.impfportal-niedersachsen.de/portal/")
+    self.driver.get(self.url)
     self.driver.find_element(By.CSS_SELECTOR, ".mat-checkbox-inner-container-no-side-margin").click()
     s()
     element = self.driver.find_element(By.XPATH, "//button[contains(.,\'Weiter\')]")

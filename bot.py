@@ -66,7 +66,7 @@ if __name__ == "__main__":
     ask_user_data()
   input('Breit, wenn du es bist! \nDrücke einfach Enter und es geht los... ')
 
-  session = ImpfBot(system)
+  session = ImpfBot(system,"https://www.impfportal-niedersachsen.de/portal/")
   session.anmeldung(store('geb'),store('plz'))
   session.refresh()
   
