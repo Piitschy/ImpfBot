@@ -3,6 +3,9 @@ from datetime import datetime
 from time import sleep
 import random
 import re
+import platform
+
+os = platform.system()
 
 rxDate=r'^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$'
 rxPLZ=r'^[0-9]{5}$'
@@ -19,8 +22,7 @@ def eingabe(text, regex):
 geb=eingabe('Geburtstag (dd.MM.yyyy): ',rxDate)
 plz=eingabe('PLZ: ',rxPLZ)
 
-session = ImpfBot()
-session.setup()
+session = ImpfBot(os)
 session.anmeldung(geb,plz)
 session.refresh()
 

@@ -8,8 +8,13 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 class ImpfBot():
-  def setup(self):
-    self.driver = webdriver.Chrome('./chromedriver')
+  driver_path= {
+    'Linux': './chromedriver_linux',
+    'Darwin': './chromedriver_linux',
+    'Windows': './chromedriver.exe',
+  }
+  def __init__(self,os) -> None:
+    self.driver = webdriver.Chrome(self.driver_path[os])
     self.vars = {}
   
   def teardown(self):
