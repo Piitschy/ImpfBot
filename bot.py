@@ -4,6 +4,7 @@ from time import sleep
 import random
 import re
 import platform
+from playsound import playsound
 
 
 os = platform.system()
@@ -35,4 +36,8 @@ while True:
     break
   print(datetime.now().strftime("%H:%M:%S"),'keine Termine')
 
-print('JETZT IST WAS ANDERS!!!!!')
+while True:
+  playsound('audio.mp3')
+  print('JETZT IST WAS ANDERS!!!!!')
+  sleep(2)
+
