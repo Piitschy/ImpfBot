@@ -1,10 +1,10 @@
 from classes import *
+from sms_service import *
 from datetime import datetime
 from time import sleep
 import random
 import re
 import platform
-
 
 os = platform.system()
 
@@ -12,6 +12,12 @@ rxDate=r'^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$'
 rxPLZ=r'^[0-9]{5}$'
 
 rand = lambda: 5+random.randint(1, 10)/5
+
+pool = MultiProc()
+pool.add_process(app.run, host='0.0.0.0', port=5000, debug=False, threaded=True)
+pool.start()
+
+sleep(5)
 
 def eingabe(text, regex):
   e = input(text)
