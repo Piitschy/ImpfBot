@@ -52,7 +52,7 @@ def ask_user_data():
       store.save(k,e)
   return store()
 
-def start_sms_service():
+def start_flask():
   pool = MultiProc()
   pool.add_process(app.run, host='0.0.0.0', port=5000, debug=False, threaded=True)
   pool.start()
@@ -76,14 +76,19 @@ def start_bot():
   print('JETZT IST WAS ANDERS!!!!!')
 
 if __name__ == "__main__":
-  ui = input('Willst du ne UI? (y/n): ')
-  if ui == 'y':
-    start_sms_service()
-    webbrowser.open('http://localhost:5000')
-  else:
-    clear()
-    ask_user_data()
-  sleep(1)
+  start_flask()
+  webbrowser.open('http://localhost:5000')
+  print("...")
+  sleep(5)
+  clear()
+  for k in utils.user_data:
+    if k not in store.state:
+      manuell = input('Willst du deine Daten lieber hier eingeben? (y/n): ')
+      if manuell == 'y':
+        clear()
+        ask_user_data()
+  clear()
+
   input('Breit, wenn du es bist! \nDrücke einfach Enter und es geht los... ')
 
   start_bot()
