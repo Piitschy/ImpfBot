@@ -17,10 +17,7 @@ Geht nur mit installiertem ChromeBrowser und in Niedersachsen...
     ```bash
     pip install -r requirements.txt
     ```
-    [Klick' hier, wenns bei Windows nicht geht...](https://www.activestate.com/resources/quick-reads/how-to-install-pip-on-windows)
-    
-    Bei Linux such einfach nach ```python3-pip``` in deiner Paketverwaltung. 
-    _( z.B. Deb/Ubu: ```apt install python3-pip``` )_
+    Wenn das nicht geht, öffne nochmal den Python installer und 'modifiziere' die Installation nochmal - also 'add path' und den 'py'-shortcut
 - Starte den Bot:
   - Unix:
     ```bash
