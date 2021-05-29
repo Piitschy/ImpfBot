@@ -1,51 +1,101 @@
 from classes import *
+import utils
 from datetime import datetime
 from time import sleep
 import random
 import re
 import platform
-from playsound import playsound
+from flask import Flask, request, render_template, redirect, url_for
+import logging
 import os
-
-clear_str = {
-  'Linux': 'clear',
-  'Darwin': 'clear',
-  'Windows': 'cls',
-}
+import webbrowser
+import threading
+from playsound import playsound
 
 system = platform.system()
+store = Storage()
+app = Flask(__name__)
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
-rxDate=r'^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$'
-rxPLZ=r'^[0-9]{5}$'
-
+clear = lambda: os.system(utils.clear_str[system])
 rand = lambda: 5+random.randint(1, 10)/5
-clear = lambda: os.system(clear_str[system])
+
+@app.route('/',methods=['GET','POST'])
+def index():
+  if request.method == 'POST':
+    for k in utils.user_data:
+      store.save(k,request.form[k])
+  return render_template("index.html", **store.state )
+  
+@app.route('/code/<code>',methods=["GET"])
+def getCode(code):
+  store.save('sms',code)
+  return 'nice'
+
+
+@app.route('/start',methods=["GET"])
+def start():
+  threading.Thread(target=start_bot).start()
+  return redirect(url_for('index'))
 
 def eingabe(text, regex):
   e = input(text)
+  if e == '':
+    return
   if re.match(regex,e):
     return e
   print('Ne, mach mal richtig...')
   eingabe(text, regex)
 
-clear()
-geb=eingabe('Geburtstag (dd.MM.yyyy): ',rxDate)
-plz=eingabe('PLZ: ',rxPLZ)
+def ask_user_data():
+  ud = utils.user_data
+  for k,v in ud.items():
+    if k not in store.state:
+      e = eingabe(v['text'],v['rx'])
+      if not e:
+        continue
+      store.save(k,e)
+  return store()
 
-session = ImpfBot(system)
-session.anmeldung(geb,plz)
-session.refresh()
-
-while True:
-  sleep(rand())
+def start_bot():
+  session = ImpfBot(system,"https://www.impfportal-niedersachsen.de/portal/")
+  session.anmeldung(store.load('geb',local='de'),store('plz'))
   session.refresh()
-  sleep(0.5)
-  if session.check():
-    break
-  print(datetime.now().strftime("%H:%M:%S"),'keine Termine')
+  
+  while True:
+    sleep(rand())
+    session.refresh()
+    sleep(0.5)
+    if session.check():
+      break
+    print(datetime.now().strftime("%H:%M:%S"),'keine Termine')
 
-while True:
-  playsound('audio.mp3')
-  print('JETZT IST WAS ANDERS!!!!!')
-  sleep(2)
+  while True:
+    playsound('audio.mp3')
+    print('DA SCHEIN WAS FREI ZU SEIN!!!!!')
+    sleep(2)
 
+if __name__ == "__main__":
+  print('Du kannst deine Daten jederzeit in storage.json ändern oder die Datei löschen, um sie zurückzusetzten.')
+  ui = input('Möchtest du das Interface (BETA) starten? (y/n): ')
+  if ui == 'y':
+    threading.Thread(target=app.run).start()
+    print('Starte Server...')
+    sleep(1)
+    clear()
+    webbrowser.open('http://localhost:5000')
+    print("...")
+    sleep(5)
+    clear()
+  else:
+    clear()
+    cl = input('Wenn du den Speicher löschen willst, gib "clear" ein, \nwenn nicht, drücke Enter: ')
+    if cl == "clear":
+      store.clear()
+    clear()
+    print('Ich brauche zumindest den Geb.-datum und die PZL. \nDen Rest kannst du leer lassen...\n')
+    ask_user_data()
+    clear()
+    input('Breit, wenn du es bist! \nDrücke einfach Enter und es geht los... ')
+    start_bot()
