@@ -5,17 +5,17 @@ from time import sleep
 import random
 import re
 import platform
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for
+import logging
 import os
 import webbrowser
-
-R_DATE=r'^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$'
-R_PLZ=r'^[0-9]{5}$'
 
 system = platform.system()
 store = Storage()
 app = Flask(__name__)
-start = False
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
+
 clear = lambda: os.system(utils.clear_str[system])
 rand = lambda: 5+random.randint(1, 10)/5
 
@@ -28,9 +28,14 @@ def index():
   
 @app.route('/code/<code>',methods=["GET"])
 def getCode(code):
-  start = True
   store.save('sms',code)
   return 'nice'
+
+@app.route('/start',methods=["GET"])
+def start():
+  bot = MultiProc(start_bot)
+  bot.start()
+  return redirect(url_for('index'))
 
 def eingabe(text, regex):
   e = input(text)
@@ -55,19 +60,9 @@ def start_sms_service():
   clear()
   return
 
-
-if __name__ == "__main__":
-  ui = input('Willst du ne UI? (y/n): ')
-  if ui == 'y':
-    start_sms_service()
-    webbrowser.open('http://localhost:5000')
-  else:
-    clear()
-    ask_user_data()
-  input('Breit, wenn du es bist! \nDrücke einfach Enter und es geht los... ')
-
+def start_bot():
   session = ImpfBot(system,"https://www.impfportal-niedersachsen.de/portal/")
-  session.anmeldung(store('geb'),store('plz'))
+  session.anmeldung(store.load('geb',local='de'),store('plz'))
   session.refresh()
   
   while True:
@@ -79,3 +74,16 @@ if __name__ == "__main__":
     print(datetime.now().strftime("%H:%M:%S"),'keine Termine')
 
   print('JETZT IST WAS ANDERS!!!!!')
+
+if __name__ == "__main__":
+  ui = input('Willst du ne UI? (y/n): ')
+  if ui == 'y':
+    start_sms_service()
+    webbrowser.open('http://localhost:5000')
+  else:
+    clear()
+    ask_user_data()
+  sleep(1)
+  input('Breit, wenn du es bist! \nDrücke einfach Enter und es geht los... ')
+
+  start_bot()

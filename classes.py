@@ -16,8 +16,7 @@ class Storage:
     try:
       self.state= self.read()
     except:
-      with open(utils.path,'w') as storage:
-        storage.write('{}')
+      self.state = self.clear()
   
   def __call__(self, key:str=None) -> dict:
     if key:
@@ -26,20 +25,20 @@ class Storage:
 
   def refresh(self):
     self.state = self.read()
-    geb = self.state['geb']
-    if 'geb' in self.state:
-      geb = self.state['geb']
-      if '-' in geb:
-        self.state['geb'] = geb[-2:]+'.'+geb[5:7]+'.'+geb[:4]
     return self.state
 
   def read(self):
     with open(utils.path) as storage:
       return dict(json.loads(storage.read()))
 
-  def load(self, key:str):
+  def clear(self):
+    with open(utils.path,'w') as storage:
+        storage.write('{}')
+    return self.refresh()
+
+  def load(self, key:str, local:str=None):
     if key in self.state:
-      if key == 'geb':
+      if key == 'geb' and local == 'de':
         geb=self.state['geb']
         return str(geb[-2:]+'.'+geb[5:7]+'.'+geb[:4])
       return self.state[key]
