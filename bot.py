@@ -76,14 +76,17 @@ def start_bot():
   print('JETZT IST WAS ANDERS!!!!!')
 
 if __name__ == "__main__":
-  start_flask()
-  webbrowser.open('http://localhost:5000')
-  print("...")
-  sleep(5)
+  print('Du kannst deine Daten jederzeit in storage.json ändern oder die Datei löschen, um sie zurückzusetzten.')
+  ui = input('Möchtest du das Interface (BETA) starten? (y/n): ')
+  if ui == 'y':
+    start_flask()
+    webbrowser.open('http://localhost:5000')
+    print("...")
+    sleep(5)
   clear()
   for k in utils.user_data:
     if k not in store.state:
-      manuell = input('Willst du deine Daten lieber hier eingeben? (y/n): ')
+      manuell = input('Willst du deine fehlenden Daten hier eingeben? (y/n): ')
       if manuell == 'y':
         clear()
         ask_user_data()
