@@ -9,6 +9,7 @@ from flask import Flask, request, render_template, redirect, url_for
 import logging
 import os
 import webbrowser
+import threading
 
 system = platform.system()
 store = Storage()
@@ -33,8 +34,7 @@ def getCode(code):
 
 @app.route('/start',methods=["GET"])
 def start():
-  bot = MultiProc(start_bot)
-  bot.start()
+  threading.Thread(target=start_bot).start()
   return redirect(url_for('index'))
 
 def eingabe(text, regex):
@@ -79,7 +79,11 @@ if __name__ == "__main__":
   print('Du kannst deine Daten jederzeit in storage.json ändern oder die Datei löschen, um sie zurückzusetzten.')
   ui = input('Möchtest du das Interface (BETA) starten? (y/n): ')
   if ui == 'y':
-    start_flask()
+    #start_flask()
+    threading.Thread(target=app.run).start()
+    print('Starte Server...')
+    sleep(1)
+    clear()
     webbrowser.open('http://localhost:5000')
     print("...")
     sleep(5)
