@@ -33,6 +33,7 @@ def getCode(code):
   store.save('sms',code)
   return 'nice'
 
+
 @app.route('/start',methods=["GET"])
 def start():
   threading.Thread(target=start_bot).start()
@@ -76,7 +77,6 @@ def start_bot():
     sleep(2)
 
 if __name__ == "__main__":
-
   print('Du kannst deine Daten jederzeit in storage.json ändern oder die Datei löschen, um sie zurückzusetzten.')
   ui = input('Möchtest du das Interface (BETA) starten? (y/n): ')
   if ui == 'y':
