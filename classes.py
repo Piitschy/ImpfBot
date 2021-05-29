@@ -40,7 +40,8 @@ class Storage:
     if key in self.state:
       if key == 'geb' and local == 'de':
         geb=self.state['geb']
-        return str(geb[-2:]+'.'+geb[5:7]+'.'+geb[:4])
+        if '-' in geb:
+          return str(geb[-2:]+'.'+geb[5:7]+'.'+geb[:4])
       return self.state[key]
     return None
 

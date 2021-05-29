@@ -20,6 +20,14 @@ clear_str = {
 }
 
 user_data = {
+  'geb': {
+    'text': 'Geburtstag (dd.MM.yyyy): ',
+    'rx': R_DATE
+  },
+  'plz': {
+    'text': 'PLZ: ',
+    'rx': R_PLZ
+  },
   'lastname': {
     'text': 'Nachname: ',
     'rx': R_TXT
@@ -43,13 +51,5 @@ user_data = {
   'hausnr':{
     'text': 'Hausnummer: ',
     'rx': R_NR
-  },
-  'geb': {
-    'text': 'Geburtstag (dd.MM.yyyy): ',
-    'rx': R_DATE
-  },
-  'plz': {
-    'text': 'PLZ: ',
-    'rx': R_PLZ
   }
 }

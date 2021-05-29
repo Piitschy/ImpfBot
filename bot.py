@@ -10,6 +10,7 @@ import logging
 import os
 import webbrowser
 import threading
+from playsound import playsound
 
 system = platform.system()
 store = Storage()
@@ -39,6 +40,8 @@ def start():
 
 def eingabe(text, regex):
   e = input(text)
+  if e == '':
+    return
   if re.match(regex,e):
     return e
   print('Ne, mach mal richtig...')
@@ -49,16 +52,10 @@ def ask_user_data():
   for k,v in ud.items():
     if k not in store.state:
       e = eingabe(v['text'],v['rx'])
+      if not e:
+        continue
       store.save(k,e)
   return store()
-
-def start_flask():
-  pool = MultiProc()
-  pool.add_process(app.run, host='0.0.0.0', port=5000, debug=False, threaded=True)
-  pool.start()
-  sleep(1)
-  clear()
-  return
 
 def start_bot():
   session = ImpfBot(system,"https://www.impfportal-niedersachsen.de/portal/")
@@ -73,13 +70,15 @@ def start_bot():
       break
     print(datetime.now().strftime("%H:%M:%S"),'keine Termine')
 
-  print('JETZT IST WAS ANDERS!!!!!')
+  while True:
+    playsound('audio.mp3')
+    print('DA SCHEIN WAS FREI ZU SEIN!!!!!')
+    sleep(2)
 
 if __name__ == "__main__":
   print('Du kannst deine Daten jederzeit in storage.json ändern oder die Datei löschen, um sie zurückzusetzten.')
   ui = input('Möchtest du das Interface (BETA) starten? (y/n): ')
   if ui == 'y':
-    #start_flask()
     threading.Thread(target=app.run).start()
     print('Starte Server...')
     sleep(1)
@@ -87,15 +86,11 @@ if __name__ == "__main__":
     webbrowser.open('http://localhost:5000')
     print("...")
     sleep(5)
-  clear()
-  for k in utils.user_data:
-    if k not in store.state:
-      manuell = input('Willst du deine fehlenden Daten hier eingeben? (y/n): ')
-      if manuell == 'y':
-        clear()
-        ask_user_data()
-  clear()
-
-  input('Breit, wenn du es bist! \nDrücke einfach Enter und es geht los... ')
-
-  start_bot()
+    clear()
+  else:
+    clear()
+    print('Ich brauche zumindest den Geb.Datum und die PZL. \nDen Rest kannst du leer lassen...')
+    ask_user_data()
+    clear()
+    input('Breit, wenn du es bist! \nDrücke einfach Enter und es geht los... ')
+    start_bot()
