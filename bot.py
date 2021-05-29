@@ -76,6 +76,7 @@ def start_bot():
     sleep(2)
 
 if __name__ == "__main__":
+
   print('Du kannst deine Daten jederzeit in storage.json ändern oder die Datei löschen, um sie zurückzusetzten.')
   ui = input('Möchtest du das Interface (BETA) starten? (y/n): ')
   if ui == 'y':
@@ -89,7 +90,11 @@ if __name__ == "__main__":
     clear()
   else:
     clear()
-    print('Ich brauche zumindest den Geb.Datum und die PZL. \nDen Rest kannst du leer lassen...')
+    cl = input('Wenn du den Speicher löschen willst, gib "clear" ein, \nwenn nicht, drücke Enter: ')
+    if cl == "clear":
+      store.clear()
+    clear()
+    print('Ich brauche zumindest den Geb.-datum und die PZL. \nDen Rest kannst du leer lassen...\n')
     ask_user_data()
     clear()
     input('Breit, wenn du es bist! \nDrücke einfach Enter und es geht los... ')
