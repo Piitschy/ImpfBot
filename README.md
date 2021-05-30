@@ -1,8 +1,11 @@
 # ImpfBot
 ## _Grabb' dir einen Termin_
 
-
 Dieser Bot regelt für dich...
+
+:arrow_forward: Nur für Leute aus Gruppe 3 _( Rest folgt )_
+
+> :warning: **Bitte missbrau dieses Tool nicht**: Der Grundgedanke ist es, eine faire Möglichkeit für alle zu schaffen, um an spontane Impftermine zu kommen. Du sollst eine Chance gegen andere (kommerzielle) Bot-Nutzer haben. Benutz dieses Tool bitte nur für deinen eigenen Termin.
 
 ## Installation
 Geht nur mit installiertem ChromeBrowser und in Niedersachsen...
@@ -27,3 +30,7 @@ Geht nur mit installiertem ChromeBrowser und in Niedersachsen...
     ```bash
     py bot.py
     ```
+
+## upcoming features
+- Auto-SMS-Service
+- optional: Auto-Capture
