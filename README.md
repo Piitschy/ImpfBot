@@ -12,7 +12,7 @@ Geht nur mit installiertem ChromeBrowser und in Niedersachsen...
 - Lad' dir erstmal [Python](https://www.python.org/).
 - Installiere Python
   - Windows/Mac: Achte darauf, dass du 'add Path' aktivierst und pip mitinstallierst!!!
-  - Linux: such' einfach nach ```python3-pip``` in deiner Paketverwaltung.  _( z.B. Deb/Ubu: ```apt install python3-pip``` )_
+  - Linux: Such' einfach nach ```python3-pip``` in deiner Paketverwaltung.  _( z.B. Deb/Ubu: ```apt install python3-pip``` )_
 - Lad' dir den [Bums hier](https://github.com/Piitschy/ibot/archive/refs/heads/main.zip) runter und entpacke ihn.
 
 - Installier' die Requirements:
@@ -23,7 +23,7 @@ Geht nur mit installiertem ChromeBrowser und in Niedersachsen...
       python setup.py
       ```
 
->:exclamation: Wenn das nicht geht, öffne nochmal den Python installer und 'modifiziere' die Installation nochmal - also 'add path' und den 'py'-shortcut
+>:exclamation: Wenn das nicht geht, öffne nochmal den Python installer und 'modifiziere' die Installation nochmal - also 'add path' und soo...
 - Starte den Bot: 
   - doppelklicke auf ```run.py```
   
