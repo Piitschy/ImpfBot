@@ -11,6 +11,6 @@ for r in req:
     import_module(r)
   except ImportError:
     print("\nTrying to Install required module: "+r+"\n")
-    os.system('python -m pip install '+r)
+    os.system('python -m pip3 install '+r)
 
 print('\nAlle Module installiert')

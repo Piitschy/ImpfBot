@@ -9,29 +9,37 @@ Dieser Bot regelt für dich...
 
 ## Installation
 Geht nur mit installiertem ChromeBrowser und in Niedersachsen...
-- Lad' dir erstmal [Python](https://www.python.org/).
+- Lad' dir erstmal [Python](https://www.python.org/downloads/).
 - Installiere Python
-  - Windows/Mac: Achte darauf, dass du 'add Path' aktivierst und pip mitinstallierst!!!
-  - Linux: Such' einfach nach ```python3-pip``` in deiner Paketverwaltung.  _( z.B. Deb/Ubu: ```apt install python3-pip``` )_
+  - Windows: Achte darauf, dass du 'add Path' aktivierst und pip mitinstallierst!!!
+  - Linux: Installiere Python und installiere dann pip mit:
+    ```bash
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    python get-pip.py
+    ```
 - Lad' dir den [Bums hier](https://github.com/Piitschy/ibot/archive/refs/heads/main.zip) runter und entpacke ihn.
 
 - Installier' die Requirements:
-  - doppelklicke auf ```setup.py```
+  - Windows: doppelklicke auf ```setup.py```
+    >:exclamation: Wenn das nicht geht, öffne nochmal den Python installer und 'modifiziere' die Installation nochmal - also 'add path' und soo...
+  - Mac: Rechtklick ```setup.py``` > Öffnen mit > Python Launcher.app
   
-  - ODER öffne das Verzeichnis in CMD/PowerShell* oder im Terminal* gib' das hier ein:
+  - ODER für alle: öffne das Verzeichnis in CMD/PowerShell* oder im Terminal* gib' das hier ein:
       ```bash
       python setup.py
       ```
-
->:exclamation: Wenn das nicht geht, öffne nochmal den Python installer und 'modifiziere' die Installation nochmal - also 'add path' und soo...
+    >Wenn das nicht, klappt öffne das Verzeichnis in CMD/PowerShell* oder im Terminal* gib' das hier ein:
+    ```bash
+    python -m pip3 install -r requirements.txt
+    ```
 - Starte den Bot: 
-  - doppelklicke auf ```run.py```
+  - Windows: doppelklicke auf ```run.py```
+  - Mac: Rechtklick ```run.py``` > Öffnen mit > Python Launcher.app
   
-  - ODER öffne das Verzeichnis in CMD/PowerShell* oder im Terminal* gib' das hier ein:
+  - ODER für alle: öffne das Verzeichnis in CMD/PowerShell* oder im Terminal* gib' das hier ein:
       ```bash
       python run.py
       ```
-      Oder doppelklicke auf ```run.py```
 
 *Geh' auf den frisch entpackten Ordner und öffne ihn in der CMD/PowerShell oder im Terminal. _( shift+rechtklick auf den ibot-Ordner - 'in CMD/Terminal/PowerShell öffnen' )_
 
