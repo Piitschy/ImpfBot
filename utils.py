@@ -1,3 +1,15 @@
+from datetime import datetime
+from time import sleep
+import random
+import re
+import platform
+from flask import Flask, request, render_template, redirect, url_for
+import logging
+import os
+import webbrowser
+import threading
+from playsound import playsound
+
 R_TXT=r'^[A-ZÄÖÜ]{1}[a-zA-Z äöüÄÖÜß ]$'
 R_NR=r'^[0-9]{1,4}[ ]{0,1}[a-zA-Z]'
 R_DATE=r'^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$'
