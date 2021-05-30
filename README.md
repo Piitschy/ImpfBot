@@ -8,7 +8,8 @@ Dieser Bot regelt für dich...
 > :warning: **Bitte missbrau' dieses Tool nicht**: Der Grundgedanke ist es, eine faire Möglichkeit für alle zu schaffen, dei an spontane Impftermine kommen wollen. Du sollst eine Chance gegen andere (kommerzielle) Bot-Nutzer haben. Benutz dieses Tool bitte nur für deinen eigenen Termin.
 
 ## Installation
-Geht nur mit installiertem ChromeBrowser und in Niedersachsen...
+Geht nur mit installiertem Browser ```Chrome v91``` und in Niedersachsen...
+> :warning: Mac-Nutzer müssen chromedriver_darwin nach dem dersten Start unter ```Einstellungen > Sicherheit``` das Starten erlauben!
 - Lad' dir erstmal [Python](https://www.python.org/downloads/).
 - Installiere Python
   - Windows: Achte darauf, dass du 'add Path' aktivierst und pip mitinstallierst!!!
