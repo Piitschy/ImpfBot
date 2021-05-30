@@ -37,7 +37,7 @@ Geht nur mit installiertem Browser ```Chrome v91``` und in Niedersachsen...
 - Starte den Bot: 
   - Windows: doppelklicke auf ```run.py```
   - Mac: Rechtklick ```run.py``` > Öffnen mit > Python Launcher.app
-    > :exclamation: Mac-Nutzer müssen chromedriver_darwin nach dem dersten Start unter ```Einstellungen > Sicherheit``` das Starten erlauben!
+    > :exclamation: Mac-Nutzer müssen ```chromedriver_darwin``` nach dem ersten Start unter ```Einstellungen > Sicherheit``` das Starten erlauben!
   
   - ODER für alle: öffne das Verzeichnis in CMD/PowerShell* oder im Terminal* gib' das hier ein:
       ```bash
