@@ -21,7 +21,7 @@ path='./storage.json'
 
 driver_path= {
   'Linux': './drivers/chromedriver_linux',
-  'Darwin': './drivers/chromedriver_linux',
+  'Darwin': './drivers/chromedriver_darwin',
   'Windows': './drivers/chromedriver.exe',
 }
 

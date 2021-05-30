@@ -15,7 +15,8 @@ Geht nur mit installiertem ChromeBrowser und in Niedersachsen...
   - Linux: Installiere Python und installiere dann pip mit:
     ```bash
     curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-    python get-pip.py
+    
+    python3 get-pip.py
     ```
 - Lad' dir den [Bums hier](https://github.com/Piitschy/ibot/archive/refs/heads/main.zip) runter und entpacke ihn.
 
@@ -26,11 +27,11 @@ Geht nur mit installiertem ChromeBrowser und in Niedersachsen...
   
   - ODER für alle: öffne das Verzeichnis in CMD/PowerShell* oder im Terminal* gib' das hier ein:
       ```bash
-      python setup.py
+      python3 setup.py
       ```
     >Wenn das nicht, klappt öffne das Verzeichnis in CMD/PowerShell* oder im Terminal* gib' das hier ein:
     ```bash
-    python -m pip3 install -r requirements.txt
+    python3 -m pip3 install -r requirements.txt
     ```
 - Starte den Bot: 
   - Windows: doppelklicke auf ```run.py```
@@ -38,7 +39,7 @@ Geht nur mit installiertem ChromeBrowser und in Niedersachsen...
   
   - ODER für alle: öffne das Verzeichnis in CMD/PowerShell* oder im Terminal* gib' das hier ein:
       ```bash
-      python run.py
+      python3 run.py
       ```
 
 *Geh' auf den frisch entpackten Ordner und öffne ihn in der CMD/PowerShell oder im Terminal. _( shift+rechtklick auf den ibot-Ordner - 'in CMD/Terminal/PowerShell öffnen' )_
