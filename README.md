@@ -13,7 +13,7 @@ Geht nur mit installiertem Browser ```Chrome v91``` und in Niedersachsen...
 - Lad' dir erstmal [Python](https://www.python.org/downloads/).
 - Installiere Python
   - Windows: Achte darauf, dass du 'add Path' aktivierst und pip mitinstallierst!!!
-  - Linux: Installiere Python und installiere dann pip mit:
+  - Linux/Mac: Installiere Python und installiere dann pip mit:
     ```bash
     curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
     
