@@ -23,7 +23,7 @@ Geht nur mit installiertem Browser [Chrome v91](https://www.google.com/intl/de_d
     
     python3 get-pip.py
     ```
-- Lad' dir den [Bums hier](https://github.com/Piitschy/ImpfBot/archive/refs/heads/main.zip) runter und entpacke ihn.
+- Lad' dir den [Bums hier](https://github.com/Piitschy/vaccinator/archive/refs/heads/main.zip) runter und entpacke ihn.
 
 - Installier' die Requirements:
   - Windows: doppelklicke auf ```setup.py```
