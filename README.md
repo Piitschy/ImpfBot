@@ -1,4 +1,7 @@
 # ImpfBot
+
+[![Python](https://img.shields.io/badge/Made%20with-Python%203.9-blue.svg?style=flat-square&logo=Python&logoColor=white)](https://www.python.org/)
+
 ## _Grabb' dir einen Termin_
 
 Dieser Bot regelt für dich...
@@ -8,7 +11,7 @@ Dieser Bot regelt für dich...
 > :warning: **Bitte missbrau' dieses Tool nicht**: Der Grundgedanke ist es, eine faire Möglichkeit für alle zu schaffen, die an spontane Impftermine kommen wollen. Du sollst eine Chance gegen andere (kommerzielle) Bot-Nutzer haben. Benutz dieses Tool bitte nur für deinen eigenen Termin.
 
 ## Installation
-Geht nur mit installiertem Browser ```Chrome v91``` und in Niedersachsen...
+Geht nur mit installiertem Browser [Chrome v91](https://www.google.com/intl/de_de/chrome/) und in Niedersachsen...
 
 - Lad' dir erstmal [Python](https://www.python.org/downloads/).
 - Installiere Python
