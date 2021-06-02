@@ -77,6 +77,7 @@ def start_bot():
     sleep(2)
 
 if __name__ == "__main__":
+  print('Gegen 17:30 hast du erfahrungsgemäß die beste Chance...')
   print('Du kannst deine Daten jederzeit in storage.json ändern oder die Datei löschen, um sie zurückzusetzten.')
   ui = input('Möchtest du das Interface (BETA) starten? (y/n): ')
   if ui == 'y':
