@@ -8,7 +8,6 @@
 Dieser Bot regelt für dich...
 
 ## :arrow_forward: Gegen 17:30 stehen die Chancen am besten
-:arrow_forward: Nur für Leute aus Gruppe 3 _( Rest folgt )_
 
 > :warning: **Bitte missbrau' dieses Tool nicht**: Der Grundgedanke ist es, eine faire Möglichkeit für alle zu schaffen, die an spontane Impftermine kommen wollen. Du sollst eine Chance gegen andere (kommerzielle) Bot-Nutzer haben. Benutz dieses Tool bitte nur für deinen eigenen Termin.
 
