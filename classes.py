@@ -55,10 +55,11 @@ class Storage:
     return s
 
 class ImpfBot:
-  def __init__(self,system, url) -> None:
+  def __init__(self,system, url,t:int=0.3) -> None:
     self.driver = webdriver.Chrome(utils.driver_path[system])
     self.url = url
     self.vars = {}
+    self.s = lambda: sleep(t)
   
   def teardown(self):
     self.driver.quit()
@@ -73,29 +74,59 @@ class ImpfBot:
   def refresh(self):
     self.driver.find_element(By.XPATH, "//span[contains(.,\'Suchen\')]").click()
 
-  def anmeldung(self,geb:str,plz:str,t:int=0.3):
-    s = lambda: sleep(t)
+  def anmeldung(self,geb:str,plz:str):
     self.driver.get(self.url)
     self.driver.find_element(By.CSS_SELECTOR, ".mat-checkbox-inner-container-no-side-margin").click()
-    s()
+    self.s()
     element = self.driver.find_element(By.XPATH, "//button[contains(.,\'Weiter\')]")
     actions = ActionChains(self.driver)
     actions.move_to_element(element).perform()
-    s()
+    self.s()
     self.driver.find_element(By.XPATH, "//button[contains(.,\'Weiter\')]").click()
-    s()
+    self.s()
     element = self.driver.find_element(By.CSS_SELECTOR, ".cdk-focused > .mat-button-wrapper")
     actions = ActionChains(self.driver)
     actions.move_to_element(element).perform()
-    s()
+    self.s()
     self.driver.find_element(By.CSS_SELECTOR, ".cdk-focused > .mat-button-wrapper").click()
-    s()
+    self.s()
     self.driver.find_element(By.ID, "mat-input-2").click()
-    s()
+    self.s()
     self.driver.find_element(By.ID, "mat-input-2").send_keys(geb)
-    s()
+    self.s()
     self.driver.find_element(By.XPATH, "//span[contains(.,\'Weiter\')]").click()
-    s()
+    self.s()
     self.driver.find_element(By.ID, "mat-input-0").click()
-    s()
+    self.s()
     self.driver.find_element(By.ID, "mat-input-0").send_keys(plz)
+
+  def form(self,firstname,lastname,):
+    self.driver.find_element(By.CSS_SELECTOR, ".ng-tns-c108-12:nth-child(2)").click()
+    self.driver.find_element(By.XPATH, "//span[contains(.,\'Divers\')]").click()
+    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-8").click()
+    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-8").send_keys(firstname)
+    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-9").click()
+    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-9").send_keys(lastname)
+    self.driver.find_element(By.XPATH, "//div[3]/div/autocomplete/div[2]/mat-form-field/div/div/div/input").click()
+    self.driver.find_element(By.XPATH, "//div[3]/div/autocomplete/div[2]/mat-form-field/div/div/div/input").send_keys("im moore")
+    self.driver.find_element(By.XPATH, "//mat-option").click()
+    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-11").click()
+    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-11").send_keys("1")
+    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-12").click()
+    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-12").send_keys("zusatz")
+    self.driver.find_element(By.CSS_SELECTOR, "#mat-checkbox-2 .mat-checkbox-inner-container").click()
+    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-15").click()
+    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-15").send_keys("jan-d.puetsch@live.de")
+    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-19").click()
+    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-19").send_keys("jan-d.pietsch@live.de")
+    self.driver.find_element(By.CSS_SELECTOR, ".maxfill:nth-child(1) > .maxfill > div").click()
+
+class TestAnmeldung():
+  def setup_method(self, method):
+    self.driver = webdriver.Chrome()
+    self.vars = {}
+  
+  def teardown_method(self, method):
+    self.driver.quit()
+  
+  
