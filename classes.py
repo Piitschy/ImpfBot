@@ -74,7 +74,7 @@ class ImpfBot:
   def refresh(self):
     self.driver.find_element(By.XPATH, "//span[contains(.,\'Suchen\')]").click()
 
-  def anmeldung(self,geb:str,plz:str):
+  def anmeldung(self,store):
     self.driver.get(self.url)
     self.driver.find_element(By.CSS_SELECTOR, ".mat-checkbox-inner-container-no-side-margin").click()
     self.s()
@@ -92,41 +92,48 @@ class ImpfBot:
     self.s()
     self.driver.find_element(By.ID, "mat-input-2").click()
     self.s()
-    self.driver.find_element(By.ID, "mat-input-2").send_keys(geb)
+    self.driver.find_element(By.ID, "mat-input-2").send_keys(store.load('geb',local='de'))
     self.s()
     self.driver.find_element(By.XPATH, "//span[contains(.,\'Weiter\')]").click()
     self.s()
     self.driver.find_element(By.ID, "mat-input-0").click()
     self.s()
-    self.driver.find_element(By.ID, "mat-input-0").send_keys(plz)
+    self.driver.find_element(By.ID, "mat-input-0").send_keys(store('plz'))
 
-  def form(self,firstname,lastname,):
+  def form(self, store):
     self.driver.find_element(By.CSS_SELECTOR, ".ng-tns-c108-12:nth-child(2)").click()
+    sleep(1)
     self.driver.find_element(By.XPATH, "//span[contains(.,\'Divers\')]").click()
+    self.s()
     self.driver.find_element(By.CSS_SELECTOR, "#mat-input-8").click()
-    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-8").send_keys(firstname)
+    self.s()
+    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-8").send_keys(store('firstname'))
+    self.s()
     self.driver.find_element(By.CSS_SELECTOR, "#mat-input-9").click()
-    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-9").send_keys(lastname)
+    self.s()
+    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-9").send_keys(store('lastname'))
+    self.s()
     self.driver.find_element(By.XPATH, "//div[3]/div/autocomplete/div[2]/mat-form-field/div/div/div/input").click()
-    self.driver.find_element(By.XPATH, "//div[3]/div/autocomplete/div[2]/mat-form-field/div/div/div/input").send_keys("im moore")
+    self.s()
+    self.driver.find_element(By.XPATH, "//div[3]/div/autocomplete/div[2]/mat-form-field/div/div/div/input").send_keys(store('str'))
+    sleep(1)
     self.driver.find_element(By.XPATH, "//mat-option").click()
+    self.s()
     self.driver.find_element(By.CSS_SELECTOR, "#mat-input-11").click()
-    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-11").send_keys("1")
-    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-12").click()
-    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-12").send_keys("zusatz")
+    self.s()
+    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-11").send_keys(store('hausnr'))
+    self.s()
+    #self.driver.find_element(By.CSS_SELECTOR, "#mat-input-12").click()
+    #self.s()
+    #self.driver.find_element(By.CSS_SELECTOR, "#mat-input-12").send_keys("zusatz")
     self.driver.find_element(By.CSS_SELECTOR, "#mat-checkbox-2 .mat-checkbox-inner-container").click()
+    self.s()
     self.driver.find_element(By.CSS_SELECTOR, "#mat-input-15").click()
-    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-15").send_keys("jan-d.puetsch@live.de")
+    self.s()
+    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-15").send_keys(store('mail'))
+    self.s()
     self.driver.find_element(By.CSS_SELECTOR, "#mat-input-19").click()
-    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-19").send_keys("jan-d.pietsch@live.de")
+    self.s()
+    self.driver.find_element(By.CSS_SELECTOR, "#mat-input-19").send_keys(store('mail'))
+    self.s()
     self.driver.find_element(By.CSS_SELECTOR, ".maxfill:nth-child(1) > .maxfill > div").click()
-
-class TestAnmeldung():
-  def setup_method(self, method):
-    self.driver = webdriver.Chrome()
-    self.vars = {}
-  
-  def teardown_method(self, method):
-    self.driver.quit()
-  
-  

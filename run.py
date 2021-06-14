@@ -60,9 +60,9 @@ def ask_user_data():
 
 def start_bot():
   session = ImpfBot(system,"https://www.impfportal-niedersachsen.de/portal/")
-  session.anmeldung(store.load('geb',local='de'),store('plz'))
+  session.anmeldung(store)
   session.refresh()
-  
+  """
   while True:
     sleep(rand())
     session.refresh()
@@ -70,7 +70,9 @@ def start_bot():
     if session.check():
       break
     print(datetime.now().strftime("%H:%M:%S"),'keine Termine')
-
+  """
+  input('Tipp enter, wenn du einen ausgewählt hast...')
+  session.form(store)
   while True:
     playsound('audio.mp3')
     print('DA SCHEIN WAS FREI ZU SEIN!!!!!')
