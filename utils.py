@@ -16,6 +16,7 @@ R_DATE=r'^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$'
 R_PLZ=r'^[0-9]{5}$'
 R_MAIL=r'^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
 R_TEL=r'^[0-9]{6,16}'
+R_SEX=r'^[m|w|d]$'
 
 path='./storage.json'
 
@@ -63,5 +64,15 @@ user_data = {
   'hausnr':{
     'text': 'Hausnummer: ',
     'rx': R_NR
+  },
+  'sex':{
+    'text':'Geschlecht (m/w/d): ',
+    'rx': R_SEX
   }
+}
+
+sex= {
+  'm': 'Herr',
+  'w': 'Frau',
+  'd': 'Divers'
 }
